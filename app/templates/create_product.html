@@ -1,0 +1,26 @@
+
+{% extends 'base.html' %}
+{% block content %}
+
+
+this is where you create a product listing
+{{hello}}
+<form method = 'POST'>
+    {{hello.csrf_token}}
+    <div class = 'form-group'>
+        <fieldset>
+            {{ hello.product_name.label }}
+            {{ hello.product_name(class='form-control', placeholder='Product Name') }}
+        </fieldset>
+        <fieldset>
+            {{ hello.price.label }}
+            {{ hello.price(class='form-control', placeholder='Price') }}
+        </fieldset>
+        <fieldset>
+            {{ hello.image.label }}
+            {{ hello.image(class='form-control', placeholder='Image URL') }}
+        </fieldset>
+        {{ hello.submit(class='btn btn-primary') }}
+    </div>
+</form>
+{% endblock content %}
