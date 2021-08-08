@@ -2,9 +2,12 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<div class="container">
+    <h2>
+        Creating New Product
+    </h2>
+</div>
 
-this is where you create a product listing
-{{hello}}
 <form method = 'POST'>
     {{hello.csrf_token}}
     <div class = 'form-group'>

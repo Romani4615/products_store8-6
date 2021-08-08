@@ -1,5 +1,7 @@
 from enum import unique
-from app import db
+from app import db, login
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import UserMixin
 
 class Product(db.Model):
     id=db.Column(db.Integer(),primary_key=True)
@@ -11,3 +13,21 @@ class Product(db.Model):
         self.product_name=product_name
         self.price=price
         self.image=image
+
+class CartItem(db.Model):
+    __tablename__='cartitems'
+    id=db.Column(db.Integer(),primary_key=True)
+    product_id=db.Column(db.Integer(), db.ForeignKey('products.id'))
+
+class User(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(50), nullable=False, unique=True)
+    password = db.Column(db.String(256), nullable=False)
+    
+    def __init__(self, email, password):
+        self.email = email
+        self.password = generate_password_hash(password)
+    
+    def check_password(self, password):
+        return check_password_hash(self.password, password)
+

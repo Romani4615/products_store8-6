@@ -10,3 +10,4 @@ class Config():
 # flask db init 
 # flask db migrate
 #  flask db upgrade
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
