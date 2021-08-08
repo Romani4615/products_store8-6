@@ -9,4 +9,5 @@ class Config():
     SQLALCHEMY_DATABASE_URI='sqlite:///' + os.path.join(basedir, 'app.db')
 # flask db init 
 # flask db migrate
-#  flask db upgrade
+# flask db upgrade
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
