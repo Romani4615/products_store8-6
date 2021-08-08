@@ -40,6 +40,13 @@ def products():
 
     return render_template('shop.html',products=my_products)
 
+@app.route('/view_cart')
+def view_cart():
+    return render_template('cart.html')
+
+@app.route('/login')
+def login():
+    return render_template('login.html')
 #aaron edit
     
 
