@@ -10,8 +10,12 @@
             <a class="nav-link active" aria-current="page" href="{{url_for('products')}}">Shop</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{url_for('about_page')}}">Contact Us</a>
+            <a class="nav-link" href="{{url_for('about_page')}}">About Us</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('view_cart')}}">View Cart</a>
+          </li>
+
           <!-- <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               ?
@@ -36,7 +40,9 @@
                   <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
               </div>
-            
+              <li class="nav-item">
+                <a class="nav-link" href="{{url_for('login')}}">login</a>
+              </li>
             
       </div>
     </div>

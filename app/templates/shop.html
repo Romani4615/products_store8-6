@@ -1,16 +1,25 @@
 {% extends 'base.html' %}
 {% block content %}
+<link rel="stylesheet" href="main.css">
 
+<div style = "background-color:LightGray;">
+
+<div style="margin-left: 50px; margin-top: 20px;">
 <h1>products</h1>
+</div>
+
 {% for p in products %}
-<div class="card" style="width: 18rem;">
+  <div class="card" style="width: 24rem; margin: auto; margin-bottom: 20px;">
     <img src="{{p.image}}" class="card-img-top" alt="image">
     <div class="card-body">
       <h5 class="card-title">{{p.product_name}}</h5>
-      <p class="card-text">:)</p>
-      <a href="#" class="btn btn-primary">{{p.price}}</a>
+      <p class="card-text">$ {{p.price}}</p>
+      <a href="#" class="btn btn-primary">click here to add to cart</a>
     </div>
   </div>
+
+
     {% endfor %}
 
 {% endblock content %}
+</div>
