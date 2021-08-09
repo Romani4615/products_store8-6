@@ -17,6 +17,9 @@ class CartTable(db.Model):
     id=db.Column(db.Integer(),primary_key=True)
     user_table=db.Column(db.Integer(), db.ForeignKey('user.id'))
     product_table=db.Column(db.Integer(), db.ForeignKey('product.id'))
+    def __init__(self, user_id, product_id):
+        self.user_table = user_id
+        self.product_table = product_id
     
 
 class Product(db.Model):

@@ -2,6 +2,7 @@ from itertools import product
 from flask.helpers import flash
 from werkzeug.wrappers import request
 from werkzeug.security import check_password_hash
+from wtforms import form
 # from wtforms.validators import Email
 from app import app, db
 from flask import render_template, redirect, url_for, request
@@ -88,26 +89,36 @@ def logout():
 
 @app.route('/view_cart')
 def view_cart():
-    return render_template('cart.html')
+    mycart = CartTable.query.all().filter_by(user_table=current_user.id)
+    for x in mycart:
+        print(x)
+        
+    #can reference in cart.html
+    return render_template('cart.html', cart=mycart)
 
-@app.route('/cart/update/<product_id>', methods=['GET', 'POST'])
+@app.route('/cart/update/<int:product_id>', methods=['GET', 'POST'])
 @login_required
 def add_to_cart(product_id):
-    product_id = Product.query.filter(product.id == product_id)
-    cart_item = CartTable(product=product)
-    db.session.add(cart_item)
-    db.session.commit()
-    print(product_id)
-    print(current_user.id)
+    product = Product.query.get_or_404(product_id)
+    #save new cart
+    
+    newcart = CartTable(current_user.id, product.id)
+
+    if request.method == 'POST':
+    
+        db.session.add(newcart)
+        db.session.commit()
+        print(product_id)
+        print(current_user.id)
     products = Product.query.all()
-    return render_template('index.html', product=products)
+    return render_template('cart.html', product=products)
 
 def remove_from_cart(product_id):
     product = Product.query.filter(Product.id == product_id)
     cart_item = CartTable(product=product)
     db.session.remove(cart_item)
     db.session.commit()
-    return render_template('index.html', product=products)
+    return render_template('cart.html', product=products)
 
 # @app.route('/view_cart')
 # def view_cart():
